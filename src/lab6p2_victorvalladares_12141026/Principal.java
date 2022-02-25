@@ -325,6 +325,11 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jL_planetas);
 
         jb_agregar_exp.setText("Añadir a su lista");
+        jb_agregar_exp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_agregar_expMouseClicked(evt);
+            }
+        });
 
         jL_explorados.setModel(new DefaultListModel());
         jScrollPane2.setViewportView(jL_explorados);
@@ -550,6 +555,11 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jL_planetas_con);
 
         jb_agregar_con.setText("Añadir a su lista");
+        jb_agregar_con.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_agregar_conMouseClicked(evt);
+            }
+        });
 
         jL_conquistados.setModel(new DefaultListModel());
         jScrollPane4.setViewportView(jL_conquistados);
@@ -976,6 +986,7 @@ public class Principal extends javax.swing.JFrame {
             
             tf_nombre_r.setText("");
             
+            
         }catch (Exception ex){  
         }
     }//GEN-LAST:event_jb_guardar_rMouseClicked
@@ -997,6 +1008,23 @@ public class Principal extends javax.swing.JFrame {
             Explorador x = new Explorador(favorito, nombre, raza, edad, amenaza);
             Planeta guardar = (Planeta)cb_habita_exp.getSelectedItem();
             guardar.getHabitantes().add(x);
+            
+           
+            
+            DefaultListModel listaModelo = (DefaultListModel)jL_explorados.getModel();
+            int length = listaModelo.getSize();
+            
+            if (!(length < 0)){
+                for (int i = 0; i < length; i++){
+                    x.getPlanetas().add((Planeta)listaModelo.getElementAt(i));
+                }
+            }
+            
+            tf_nombre_exp.setText("");
+            js_edad_exp.setValue(0);
+            jc_amenaza_exp.setSelected(false);
+            listaModelo.removeAllElements();
+            jL_explorados.setModel(listaModelo);
             
         }catch(Exception ex){   
         }
@@ -1022,6 +1050,11 @@ public class Principal extends javax.swing.JFrame {
             Planeta guardar = (Planeta) cb_habita_caz.getSelectedItem();
             guardar.getHabitantes().add(x);
             
+            tf_nombre_caz.setText("");
+            js_edad_caz.setValue(0);
+            jc_amenaza_caz.setSelected(false);
+            js_humanos.setValue(0);
+            
         }catch(Exception ex){   
         }
     }//GEN-LAST:event_jb_guardar_cazMouseClicked
@@ -1041,6 +1074,23 @@ public class Principal extends javax.swing.JFrame {
             Conquistador x = new Conquistador(nombre, raza, edad, amenaza);
             Planeta guardar = (Planeta)cb_habita_con.getSelectedItem();
             guardar.getHabitantes().add(x);
+            
+            
+            
+            DefaultListModel listaModelo = (DefaultListModel)jL_conquistados.getModel();
+            int length = listaModelo.getSize();
+            
+            if (!(length < 0)){
+                for (int i = 0; i < length; i++){
+                    x.getConquistados().add((Planeta)listaModelo.getElementAt(i));
+                }
+            }
+            
+            tf_nombre_con.setText("");
+            js_edad_con.setValue(0);
+            jc_amenaza_con.setSelected(false);
+            listaModelo.removeAllElements();
+            jL_conquistados.setModel(listaModelo);
             
         }catch(Exception ex){   
         }
@@ -1064,9 +1114,33 @@ public class Principal extends javax.swing.JFrame {
             Planeta guardar = (Planeta)cb_habita_ab.getSelectedItem();
             guardar.getHabitantes().add(x);
             
+            tf_nombre_ab.setText("");
+            js_edad_ab.setValue(0);
+            jc_amenaza_ab.setSelected(false);
+            js_animales.setValue(0);
         }catch(Exception ex){   
         }
     }//GEN-LAST:event_jb_guardar_abMouseClicked
+
+    private void jb_agregar_expMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_agregar_expMouseClicked
+       DefaultListModel listaModelo = (DefaultListModel)jL_planetas.getModel();
+       Planeta mover = (Planeta) listaModelo.getElementAt(jL_planetas.getSelectedIndex());
+       
+       
+       DefaultListModel lista = (DefaultListModel)jL_explorados.getModel();
+       lista.addElement(mover);
+       jL_explorados.setModel(lista);
+    }//GEN-LAST:event_jb_agregar_expMouseClicked
+
+    private void jb_agregar_conMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_agregar_conMouseClicked
+        DefaultListModel listaModelo = (DefaultListModel)jL_planetas_con.getModel();
+        Planeta mover = (Planeta) listaModelo.getElementAt(jL_planetas_con.getSelectedIndex());
+       
+       
+        DefaultListModel lista = (DefaultListModel)jL_conquistados.getModel();
+        lista.addElement(mover);
+        jL_conquistados.setModel(lista);
+    }//GEN-LAST:event_jb_agregar_conMouseClicked
 
     /**
      * @param args the command line arguments

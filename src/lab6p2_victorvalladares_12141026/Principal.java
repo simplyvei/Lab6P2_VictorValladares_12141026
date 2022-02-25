@@ -95,40 +95,14 @@ public class Principal extends javax.swing.JFrame {
         lista.removeAllElements();
         ArrayList temp = guardar.getHabitantes();
         
-        for (int i = 0; i <= temp.size(); i++){
+        for (int i = 0; i < temp.size(); i++){
             lista.addElement(temp.get(i));
         }
         
         jL_alien.setModel(lista);
     }
     
-    private void agregar(){
-        Planeta planeta = (Planeta)cb_planetas_arb.getSelectedItem();
-        DefaultTreeModel model = (DefaultTreeModel)jt_arbol.getModel();
-
-        DefaultListModel lista = (DefaultListModel)jL_alien.getModel();
-
-        DefaultMutableTreeNode raiz
-                = (DefaultMutableTreeNode) model.getRoot();
-
-        String nombre = planeta.getNombre();
-        int length = lista.size();
-        
-        for (int i = 0; i <= length; i++){
-            Alien alien = (Alien) lista.getElementAt(i);
-            String tipo;
-            if (alien instanceof Explorador)
-                tipo = "Explorador";
-            else if (alien instanceof Cazador)
-                tipo = "Cazador";
-            else if (alien instanceof Conquistador)
-                tipo = "Conquistador";
-            else 
-                tipo = "Abduzcan";
-
-            
-        }
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -224,7 +198,6 @@ public class Principal extends javax.swing.JFrame {
         cb_planetas_arb = new javax.swing.JComboBox<>();
         jScrollPane5 = new javax.swing.JScrollPane();
         jL_alien = new javax.swing.JList<>();
-        jb_pasar = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         jt_arbol = new javax.swing.JTree();
         jLabel24 = new javax.swing.JLabel();
@@ -246,6 +219,7 @@ public class Principal extends javax.swing.JFrame {
         jL_planetas_disp1 = new javax.swing.JList<>();
         jb_pasar_editar = new javax.swing.JButton();
         jb_agregar_arbol = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
 
         pop_editar.setText("Editar");
@@ -801,9 +775,11 @@ public class Principal extends javax.swing.JFrame {
         jL_alien.setModel(new DefaultListModel());
         jScrollPane5.setViewportView(jL_alien);
 
-        jb_pasar.setText(">");
-
-        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Root");
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Marte");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Io");
+        treeNode1.add(treeNode2);
         jt_arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jt_arbol.setComponentPopupMenu(pop_menu);
         jScrollPane6.setViewportView(jt_arbol);
@@ -829,11 +805,23 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane8.setViewportView(jL_planetas_disp1);
 
         jb_pasar_editar.setText(">");
+        jb_pasar_editar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_pasar_editarMouseClicked(evt);
+            }
+        });
 
-        jb_agregar_arbol.setText("Agregar al Arbol");
+        jb_agregar_arbol.setText(">");
         jb_agregar_arbol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_agregar_arbolActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Agregar a Lista");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
             }
         });
 
@@ -845,21 +833,20 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jb_pasar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jb_pasar_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cb_planetas_arb, 0, 145, Short.MAX_VALUE)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addGap(60, 60, 60)
-                        .addComponent(jb_agregar_arbol)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jb_agregar_arbol, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jb_pasar_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
@@ -892,59 +879,57 @@ public class Principal extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel6Layout.createSequentialGroup()
-                            .addComponent(jLabel24)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(tf_nombre_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jc_amenaza_editar)
-                            .addGap(12, 12, 12)
-                            .addComponent(jLabel26)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(cb_planetafav_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(24, 24, 24)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel28)
-                                .addComponent(js_edad_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(28, 28, 28)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel25)
-                                .addComponent(cb_raza_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel27)
-                                .addComponent(js_humanos_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel29)
-                                .addComponent(js_animales_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel6Layout.createSequentialGroup()
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel6Layout.createSequentialGroup()
-                                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel6Layout.createSequentialGroup()
-                                            .addGap(131, 131, 131)
-                                            .addComponent(jb_pasar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel6Layout.createSequentialGroup()
-                                            .addComponent(cb_planetas_arb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(34, 34, 34)
-                                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(33, 33, 33))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(30, 30, 30)))
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel6Layout.createSequentialGroup()
-                                    .addComponent(jb_pasar_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(22, 22, 22)))))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jb_agregar_arbol)
-                        .addGap(399, 399, 399)))
+                        .addComponent(jLabel24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tf_nombre_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jc_amenaza_editar)
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cb_planetafav_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel28)
+                            .addComponent(js_edad_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel25)
+                            .addComponent(cb_raza_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel27)
+                            .addComponent(js_humanos_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel29)
+                            .addComponent(js_animales_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(cb_planetas_arb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel6Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel6Layout.createSequentialGroup()
+                                        .addGap(102, 102, 102)
+                                        .addComponent(jb_agregar_arbol, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(33, 33, 33))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jb_pasar_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22)))))
                 .addGap(18, 18, Short.MAX_VALUE))
         );
 
@@ -1206,33 +1191,60 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_agregar_conMouseClicked
 
     private void jb_agregar_arbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregar_arbolActionPerformed
-        llenar();
         try{
-            Planeta planeta = (Planeta)cb_planetas_arb.getSelectedItem();
+            DefaultListModel modelo = (DefaultListModel)jL_alien.getModel();
+            Alien alien = (Alien)modelo.getElementAt(jL_alien.getSelectedIndex());
+
+            String tipo;
+            if (alien instanceof Explorador)
+                tipo = "Explorador";
+            else if (alien instanceof Cazador)
+                tipo = "Cazador";
+            else if (alien instanceof Conquistador)
+                tipo = "Conquistador";
+            else 
+                tipo = "Abduzcan";
+
             DefaultTreeModel model = (DefaultTreeModel)jt_arbol.getModel();
-            
-            DefaultListModel lista = (DefaultListModel)jL_alien.getModel();
-            
-            DefaultMutableTreeNode raiz
-                    = (DefaultMutableTreeNode) model.getRoot();
-            
-            String nombre = planeta.getNombre();
-            int length = lista.size();
-            int centinela = -1;
-            for (int i = 0; i < raiz.getChildCount(); i++) {
-                if (raiz.getChildAt(i).toString().
-                        equals(nombre)) {
-                    
-                    
-                    centinela = 1;
-                } 
+            DefaultMutableTreeNode raiz = (DefaultMutableTreeNode)model.getRoot();
+            DefaultMutableTreeNode planeta = (DefaultMutableTreeNode)model.getChild(raiz, cb_planetas_arb.getSelectedIndex());
+
+            boolean existe = false;
+            if(planeta.getChildCount() > 0){
+                //SI TIENE HIJOS RECORRE
+                for (int i = 0; i < planeta.getChildCount(); i++) {
+                    DefaultMutableTreeNode typeNode = (DefaultMutableTreeNode)planeta.getChildAt(i);
+                    if(typeNode.toString().equals(tipo)){
+                        DefaultMutableTreeNode p = new DefaultMutableTreeNode(alien);
+                        typeNode.add(p);
+                        existe = true;
+                    }
+                }
             }
-            
-            
-            
+            if(!existe){
+                DefaultMutableTreeNode typeNode = new DefaultMutableTreeNode(tipo);
+                DefaultMutableTreeNode p = new DefaultMutableTreeNode(alien);
+                typeNode.add(p);
+                planeta.add(typeNode);
+            }
+            model.reload();
         }catch (Exception ex){
         }
     }//GEN-LAST:event_jb_agregar_arbolActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        llenar();
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jb_pasar_editarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_pasar_editarMouseClicked
+    DefaultListModel listaModelo = (DefaultListModel)jL_planetas_disp.getModel();
+       Planeta mover = (Planeta) listaModelo.getElementAt(jL_planetas_disp.getSelectedIndex());
+       
+       
+       DefaultListModel lista = (DefaultListModel)jL_planetas_disp1.getModel();
+       lista.addElement(mover);
+       jL_planetas_disp1.setModel(lista);
+    }//GEN-LAST:event_jb_pasar_editarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1283,6 +1295,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_raza_con;
     private javax.swing.JComboBox<String> cb_raza_editar;
     private javax.swing.JComboBox<String> cb_raza_exp;
+    private javax.swing.JButton jButton1;
     private javax.swing.JList<String> jL_alien;
     private javax.swing.JList<String> jL_conquistados;
     private javax.swing.JList<String> jL_explorados;
@@ -1347,7 +1360,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jb_guardar_exp;
     private javax.swing.JButton jb_guardar_p;
     private javax.swing.JButton jb_guardar_r;
-    private javax.swing.JButton jb_pasar;
     private javax.swing.JButton jb_pasar_editar;
     private javax.swing.JCheckBox jc_agua;
     private javax.swing.JCheckBox jc_amenaza_ab;

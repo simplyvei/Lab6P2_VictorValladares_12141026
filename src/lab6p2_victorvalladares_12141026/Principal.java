@@ -5,6 +5,8 @@
  */
 package lab6p2_victorvalladares_12141026;
 
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author valla
@@ -16,6 +18,31 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        presets();
+    }
+    
+    private void presets(){
+        Planeta marte = new Planeta ("Marte", true, 30000, 10);
+        Planeta io = new Planeta ("Io", true, 10000, 5);
+        Planeta Jupiter = new Planeta("Jupiter", false, 500000, -20);
+        
+        Raza hive = new Raza (io, "Hive");
+        Raza fallen = new Raza (marte, "Eliksni");
+        
+        Cazador Oryx = new Cazador (20, "Oryx", hive, 20, true);
+        Abduzcan Taniks = new Abduzcan (200, "Taniks", fallen, 50, true);
+        
+        marte.getHabitantes().add(Oryx);
+        marte.getHabitantes().add(Taniks);
+        
+        Conquistador Savathun = new Conquistador("Savathun", hive, 200, true);
+        Savathun.getConquistados().add(Jupiter);
+        
+        Explorador Mithrax = new Explorador (marte, "Mithrax", fallen, 75, false);
+        
+        io.getHabitantes().add(Savathun);
+        io.getHabitantes().add(Mithrax);
     }
 
     /**
@@ -146,6 +173,11 @@ public class Principal extends javax.swing.JFrame {
         jc_agua.setText("Agua");
 
         jb_guardar_p.setText("Registrar Planeta");
+        jb_guardar_p.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_guardar_pMouseClicked(evt);
+            }
+        });
 
         jLabel6.setText("Planeta Primordial");
 
@@ -234,10 +266,12 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel9.setText("Edad");
 
+        jL_planetas.setModel(new DefaultListModel());
         jScrollPane1.setViewportView(jL_planetas);
 
         jb_agregar_exp.setText("Añadir a su lista");
 
+        jL_explorados.setModel(new DefaultListModel());
         jScrollPane2.setViewportView(jL_explorados);
 
         jc_amenaza_exp.setText("Es amenaza");
@@ -416,10 +450,12 @@ public class Principal extends javax.swing.JFrame {
 
         jb_guardar_con.setText("Guardar");
 
+        jL_planetas_con.setModel(new DefaultListModel());
         jScrollPane3.setViewportView(jL_planetas_con);
 
         jb_agregar_con.setText("Añadir a su lista");
 
+        jL_conquistados.setModel(new DefaultListModel());
         jScrollPane4.setViewportView(jL_conquistados);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -576,6 +612,7 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Abduzcan", jPanel5);
 
+        jL_alien.setModel(new DefaultListModel());
         jScrollPane5.setViewportView(jL_alien);
 
         jb_pasar.setText(">");
@@ -598,8 +635,10 @@ public class Principal extends javax.swing.JFrame {
 
         jb_editar.setText("Editar");
 
+        jL_planetas_disp.setModel(new DefaultListModel());
         jScrollPane7.setViewportView(jL_planetas_disp);
 
+        jL_planetas_disp1.setModel(new DefaultListModel());
         jScrollPane8.setViewportView(jL_planetas_disp1);
 
         jb_pasar_editar.setText(">");
@@ -740,6 +779,10 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jb_guardar_pMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_guardar_pMouseClicked
+        
+    }//GEN-LAST:event_jb_guardar_pMouseClicked
 
     /**
      * @param args the command line arguments

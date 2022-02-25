@@ -48,6 +48,39 @@ public class Principal extends javax.swing.JFrame {
         
         io.getHabitantes().add(Savathun);
         io.getHabitantes().add(Mithrax);
+        
+        DefaultComboBoxModel cb_model =
+                    (DefaultComboBoxModel) cb_planetas.getModel();
+        cb_model.addElement(marte);
+        cb_model.addElement(io);
+        cb_model.addElement(Jupiter);
+        
+        cb_planetas.setModel(cb_model);
+        cb_planetas_arb.setModel(cb_model);
+        cb_favorito.setModel(cb_model);
+        cb_planetafav_editar.setModel(cb_model);
+        
+        DefaultListModel listaModelo = 
+                (DefaultListModel)jL_planetas.getModel();
+        listaModelo.removeAllElements();
+        listaModelo.addElement(marte);
+        listaModelo.addElement(io);
+        listaModelo.addElement(Jupiter);
+        
+        jL_planetas.setModel(listaModelo);
+        jL_planetas_con.setModel(listaModelo);
+        jL_planetas_disp.setModel(listaModelo);
+        
+        DefaultComboBoxModel cb_model_raza =
+                    (DefaultComboBoxModel) cb_raza_exp.getModel();
+        cb_model_raza.addElement(hive);
+        cb_model_raza.addElement(fallen);
+
+        cb_raza_exp.setModel(cb_model_raza);
+        cb_raza_caz.setModel(cb_model_raza);
+        cb_raza_con.setModel(cb_model_raza);
+        cb_raza_ab.setModel(cb_model_raza);
+        cb_raza_editar.setModel(cb_model_raza);
     }
 
     /**
@@ -189,6 +222,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel7.setText("Nombre");
 
         jb_guardar_r.setText("Registrar Raza");
+        jb_guardar_r.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_guardar_rMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -801,6 +839,7 @@ public class Principal extends javax.swing.JFrame {
             if(jc_agua.isSelected()){
                 agua = true;
             }
+            
             size = (Integer) js_size.getValue();
             temperatura = (Integer) js_temperatura.getValue();
             Planeta x = new Planeta (nombre, agua, size, temperatura);
@@ -823,10 +862,38 @@ public class Principal extends javax.swing.JFrame {
             jL_planetas_disp.setModel(listaModelo);
             
             
+            tf_nombre_p.setText("");
+            jc_agua.setSelected(false);
+            js_size.setValue(0);
+            js_temperatura.setValue(0);
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "No se ha podido guardar el planeta");
         }    
     }//GEN-LAST:event_jb_guardar_pMouseClicked
+
+    private void jb_guardar_rMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_guardar_rMouseClicked
+        Planeta primordial;
+        String nombre;
+        try{
+            primordial = (Planeta) cb_planetas.getSelectedItem();
+            nombre = tf_nombre_r.getText();
+            Raza x = new Raza (primordial, nombre);
+            
+            DefaultComboBoxModel cb_model =
+                    (DefaultComboBoxModel) cb_raza_exp.getModel();
+            cb_model.addElement(x);
+            
+            cb_raza_exp.setModel(cb_model);
+            cb_raza_caz.setModel(cb_model);
+            cb_raza_con.setModel(cb_model);
+            cb_raza_ab.setModel(cb_model);
+            cb_raza_editar.setModel(cb_model);
+            
+            tf_nombre_r.setText("");
+            
+        }catch (Exception ex){  
+        }
+    }//GEN-LAST:event_jb_guardar_rMouseClicked
 
     /**
      * @param args the command line arguments

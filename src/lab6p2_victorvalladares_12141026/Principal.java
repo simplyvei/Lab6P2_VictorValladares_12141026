@@ -59,6 +59,10 @@ public class Principal extends javax.swing.JFrame {
         cb_planetas_arb.setModel(cb_model);
         cb_favorito.setModel(cb_model);
         cb_planetafav_editar.setModel(cb_model);
+        cb_habita_exp.setModel(cb_model);
+        cb_habita_con.setModel(cb_model);
+        cb_habita_caz.setModel(cb_model);
+        cb_habita_ab.setModel(cb_model);
         
         DefaultListModel listaModelo = 
                 (DefaultListModel)jL_planetas.getModel();
@@ -127,6 +131,8 @@ public class Principal extends javax.swing.JFrame {
         cb_favorito = new javax.swing.JComboBox<>();
         jb_guardar_exp = new javax.swing.JButton();
         js_edad_exp = new javax.swing.JSpinner();
+        jLabel30 = new javax.swing.JLabel();
+        cb_habita_exp = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         tf_nombre_caz = new javax.swing.JTextField();
@@ -138,6 +144,8 @@ public class Principal extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         js_humanos = new javax.swing.JSpinner();
         jb_guardar_caz = new javax.swing.JButton();
+        jLabel31 = new javax.swing.JLabel();
+        cb_habita_caz = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         tf_nombre_con = new javax.swing.JTextField();
@@ -152,6 +160,8 @@ public class Principal extends javax.swing.JFrame {
         jb_agregar_con = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jL_conquistados = new javax.swing.JList<>();
+        jLabel32 = new javax.swing.JLabel();
+        cb_habita_con = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         tf_nombre_ab = new javax.swing.JTextField();
@@ -163,6 +173,8 @@ public class Principal extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         js_animales = new javax.swing.JSpinner();
         jb_guardar_ab = new javax.swing.JButton();
+        jLabel33 = new javax.swing.JLabel();
+        cb_habita_ab = new javax.swing.JComboBox<>();
         jPanel6 = new javax.swing.JPanel();
         cb_planetas_arb = new javax.swing.JComboBox<>();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -324,6 +336,13 @@ public class Principal extends javax.swing.JFrame {
         jLabel11.setText("Planeta Favorito");
 
         jb_guardar_exp.setText("Guardar");
+        jb_guardar_exp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_guardar_expMouseClicked(evt);
+            }
+        });
+
+        jLabel30.setText("Planeta que habitan");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -331,9 +350,6 @@ public class Principal extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -347,19 +363,24 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tf_nombre_exp, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(jLabel8)))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jb_agregar_exp, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(jLabel10))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jb_agregar_exp, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cb_raza_exp, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(tf_nombre_exp, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(11, 11, 11)
+                                        .addComponent(jLabel8)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(43, 43, 43)
+                                        .addComponent(jLabel10))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(25, 25, 25)
+                                        .addComponent(cb_raza_exp, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -369,6 +390,12 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(cb_favorito, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel30)
+                    .addComponent(cb_habita_exp, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -392,17 +419,21 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(js_edad_exp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(6, 6, 6)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jb_agregar_exp, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(jb_agregar_exp, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
+                        .addComponent(jLabel30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cb_habita_exp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 122, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(62, 62, 62))))
         );
 
         jTabbedPane1.addTab("Explorador", jPanel2);
@@ -418,6 +449,13 @@ public class Principal extends javax.swing.JFrame {
         jLabel16.setText("Humanos atrapados");
 
         jb_guardar_caz.setText("Guardar");
+        jb_guardar_caz.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_guardar_cazMouseClicked(evt);
+            }
+        });
+
+        jLabel31.setText("Planeta que habita");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -441,19 +479,25 @@ public class Principal extends javax.swing.JFrame {
                                     .addContainerGap()
                                     .addComponent(js_edad_caz, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGap(95, 95, 95)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel15)
-                                .addComponent(cb_raza_caz, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jc_amenaza_caz)))
+                                .addComponent(cb_raza_caz, 0, 173, Short.MAX_VALUE)
+                                .addComponent(jLabel31)
+                                .addComponent(cb_habita_caz, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(11, 11, 11))
                         .addGroup(jPanel3Layout.createSequentialGroup()
                             .addGap(48, 48, 48)
                             .addComponent(jLabel16)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                             .addComponent(js_humanos, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addComponent(jb_guardar_caz, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jc_amenaza_caz)
+                .addGap(218, 218, 218))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -466,19 +510,23 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_nombre_caz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cb_raza_caz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jc_amenaza_caz)
-                    .addComponent(js_edad_caz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                .addComponent(jLabel31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(cb_habita_caz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(js_edad_caz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jc_amenaza_caz)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(js_humanos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
                 .addGap(30, 30, 30)
                 .addComponent(jb_guardar_caz)
-                .addContainerGap(152, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cazador", jPanel3);
@@ -492,6 +540,11 @@ public class Principal extends javax.swing.JFrame {
         jc_amenaza_con.setText("Es amenaza");
 
         jb_guardar_con.setText("Guardar");
+        jb_guardar_con.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_guardar_conMouseClicked(evt);
+            }
+        });
 
         jL_planetas_con.setModel(new DefaultListModel());
         jScrollPane3.setViewportView(jL_planetas_con);
@@ -501,44 +554,48 @@ public class Principal extends javax.swing.JFrame {
         jL_conquistados.setModel(new DefaultListModel());
         jScrollPane4.setViewportView(jL_conquistados);
 
+        jLabel32.setText("Planeta que habita");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel17))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(tf_nombre_con, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel18))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(js_edad_con)))
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(jLabel17))
+                            .addComponent(tf_nombre_con, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel18))
+                            .addComponent(js_edad_con, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cb_habita_con, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel19)
-                            .addComponent(cb_raza_con, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jc_amenaza_con))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jb_guardar_con, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42))))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jb_agregar_con)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel19)
+                                    .addComponent(cb_raza_con, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jc_amenaza_con))
+                                .addContainerGap(151, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jb_guardar_con, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(42, 42, 42))))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(jb_agregar_con))
+                            .addComponent(jLabel32))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -553,23 +610,27 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(cb_raza_con, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18)
-                    .addComponent(jb_guardar_con, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(js_edad_con, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jc_amenaza_con))
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(73, 73, 73)
-                                .addComponent(jb_agregar_con, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(100, Short.MAX_VALUE))
+                        .addComponent(jb_guardar_con, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jc_amenaza_con))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(js_edad_con, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cb_habita_con, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                            .addComponent(jb_agregar_con, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(49, 49, 49))))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Conquistador", jPanel4);
@@ -585,6 +646,13 @@ public class Principal extends javax.swing.JFrame {
         jLabel23.setText("Animales Abducidos");
 
         jb_guardar_ab.setText("Guardar");
+        jb_guardar_ab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_guardar_abMouseClicked(evt);
+            }
+        });
+
+        jLabel33.setText("Planeta que habita");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -605,15 +673,21 @@ public class Principal extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(js_edad_ab)))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel22)
                         .addGap(207, 207, 207))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jc_amenaza_ab)
-                            .addComponent(cb_raza_ab, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(54, 54, 54)
+                                .addComponent(jc_amenaza_ab))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(115, 115, 115)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel33)
+                                    .addComponent(cb_raza_ab, 0, 156, Short.MAX_VALUE)
+                                    .addComponent(cb_habita_ab, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -638,10 +712,17 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_nombre_ab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cb_raza_ab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addComponent(jLabel21)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel21))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel33)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cb_habita_ab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(js_edad_ab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jc_amenaza_ab))
                 .addGap(37, 37, 37)
@@ -650,7 +731,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(js_animales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(jb_guardar_ab)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Abduzcan", jPanel5);
@@ -853,6 +934,10 @@ public class Principal extends javax.swing.JFrame {
             cb_planetas_arb.setModel(cb_model);
             cb_favorito.setModel(cb_model);
             cb_planetafav_editar.setModel(cb_model);
+            cb_habita_exp.setModel(cb_model);
+            cb_habita_con.setModel(cb_model);
+            cb_habita_caz.setModel(cb_model);
+            cb_habita_ab.setModel(cb_model);
             
             DefaultListModel listaModelo = (DefaultListModel)jL_planetas.getModel();
             listaModelo.removeAllElements();
@@ -895,6 +980,94 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb_guardar_rMouseClicked
 
+    private void jb_guardar_expMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_guardar_expMouseClicked
+        String nombre;
+        Raza raza;
+        int edad;
+        Planeta favorito;
+        boolean amenaza = false;
+        try{
+            nombre = tf_nombre_exp.getText();
+            raza = (Raza)cb_raza_exp.getSelectedItem();
+            edad = (Integer)js_edad_exp.getValue();
+            favorito = (Planeta)cb_favorito.getSelectedItem();
+            if (jc_amenaza_exp.isSelected()){
+                amenaza = true;
+            }
+            Explorador x = new Explorador(favorito, nombre, raza, edad, amenaza);
+            Planeta guardar = (Planeta)cb_habita_exp.getSelectedItem();
+            guardar.getHabitantes().add(x);
+            
+        }catch(Exception ex){   
+        }
+        
+    }//GEN-LAST:event_jb_guardar_expMouseClicked
+
+    private void jb_guardar_cazMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_guardar_cazMouseClicked
+        String nombre;
+        Raza raza;
+        int edad;
+        int humanos;
+        boolean amenaza = false;
+        try{
+            nombre = tf_nombre_caz.getText();
+            raza = (Raza)cb_raza_caz.getSelectedItem();
+            edad = (Integer)js_edad_caz.getValue();
+            humanos = (Integer)js_humanos.getValue();
+            
+            if (jc_amenaza_caz.isSelected()){
+                amenaza = true;
+            }
+            Cazador x = new Cazador(humanos, nombre, raza, edad, amenaza);
+            Planeta guardar = (Planeta) cb_habita_caz.getSelectedItem();
+            guardar.getHabitantes().add(x);
+            
+        }catch(Exception ex){   
+        }
+    }//GEN-LAST:event_jb_guardar_cazMouseClicked
+
+    private void jb_guardar_conMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_guardar_conMouseClicked
+        String nombre;
+        Raza raza;
+        int edad;
+        boolean amenaza = false;
+        try{
+            nombre = tf_nombre_con.getText();
+            raza = (Raza)cb_raza_con.getSelectedItem();
+            edad = (Integer)js_edad_con.getValue();
+            if (jc_amenaza_exp.isSelected()){
+                amenaza = true;
+            }
+            Conquistador x = new Conquistador(nombre, raza, edad, amenaza);
+            Planeta guardar = (Planeta)cb_habita_con.getSelectedItem();
+            guardar.getHabitantes().add(x);
+            
+        }catch(Exception ex){   
+        }
+    }//GEN-LAST:event_jb_guardar_conMouseClicked
+
+    private void jb_guardar_abMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_guardar_abMouseClicked
+        String nombre;
+        Raza raza;
+        int edad;
+        int animales;
+        boolean amenaza = false;
+        try{
+            nombre = tf_nombre_ab.getText();
+            raza = (Raza)cb_raza_ab.getSelectedItem();
+            edad = (Integer)js_edad_ab.getValue();
+            animales = (Integer)js_animales.getValue();
+            if (jc_amenaza_exp.isSelected()){
+                amenaza = true;
+            }
+            Abduzcan x = new Abduzcan(animales, nombre, raza, edad, amenaza);
+            Planeta guardar = (Planeta)cb_habita_ab.getSelectedItem();
+            guardar.getHabitantes().add(x);
+            
+        }catch(Exception ex){   
+        }
+    }//GEN-LAST:event_jb_guardar_abMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -932,6 +1105,10 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cb_favorito;
+    private javax.swing.JComboBox<String> cb_habita_ab;
+    private javax.swing.JComboBox<String> cb_habita_caz;
+    private javax.swing.JComboBox<String> cb_habita_con;
+    private javax.swing.JComboBox<String> cb_habita_exp;
     private javax.swing.JComboBox<String> cb_planetafav_editar;
     private javax.swing.JComboBox<String> cb_planetas;
     private javax.swing.JComboBox<String> cb_planetas_arb;
@@ -970,6 +1147,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

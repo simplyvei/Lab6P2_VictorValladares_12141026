@@ -5,7 +5,10 @@
  */
 package lab6p2_victorvalladares_12141026;
 
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +24,8 @@ public class Principal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         presets();
     }
+    
+    ArrayList <Planeta> lista = new ArrayList();
     
     private void presets(){
         Planeta marte = new Planeta ("Marte", true, 30000, 10);
@@ -781,7 +786,46 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jb_guardar_pMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_guardar_pMouseClicked
-        
+        String nombre;
+        boolean agua = false;
+        int size, temperatura;
+        try{
+            nombre = tf_nombre_p.getText();
+            for (Planeta planetas : lista){
+                if (planetas.getNombre().contains(nombre)){
+                    JOptionPane.showMessageDialog(null, "Este nombre ya existe");
+                    nombre = JOptionPane.showInputDialog("Ingrese otro nombre");
+                }
+            }
+            
+            if(jc_agua.isSelected()){
+                agua = true;
+            }
+            size = (Integer) js_size.getValue();
+            temperatura = (Integer) js_temperatura.getValue();
+            Planeta x = new Planeta (nombre, agua, size, temperatura);
+            lista.add(x);
+            
+            DefaultComboBoxModel cb_model =
+                    (DefaultComboBoxModel) cb_planetas.getModel();
+            cb_model.addElement(x);
+            
+            cb_planetas.setModel(cb_model);
+            cb_planetas_arb.setModel(cb_model);
+            cb_favorito.setModel(cb_model);
+            cb_planetafav_editar.setModel(cb_model);
+            
+            DefaultListModel listaModelo = (DefaultListModel)jL_planetas.getModel();
+            listaModelo.removeAllElements();
+            listaModelo.addElement(x);
+            jL_planetas.setModel(listaModelo);
+            jL_planetas_con.setModel(listaModelo);
+            jL_planetas_disp.setModel(listaModelo);
+            
+            
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "No se ha podido guardar el planeta");
+        }    
     }//GEN-LAST:event_jb_guardar_pMouseClicked
 
     /**

@@ -28,6 +28,7 @@ public class Principal extends javax.swing.JFrame {
     }
     
     ArrayList <Planeta> lista = new ArrayList();
+    DefaultMutableTreeNode nodo_seleccionado;
     
     private void presets(){
         Planeta marte = new Planeta ("Marte", true, 30000, 10);
@@ -223,12 +224,27 @@ public class Principal extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
 
         pop_editar.setText("Editar");
+        pop_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pop_editarActionPerformed(evt);
+            }
+        });
         pop_menu.add(pop_editar);
 
         pop_eliminar.setText("Eliminar");
+        pop_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pop_eliminarActionPerformed(evt);
+            }
+        });
         pop_menu.add(pop_eliminar);
 
         pop_listar.setText("Listar");
+        pop_listar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pop_listarActionPerformed(evt);
+            }
+        });
         pop_menu.add(pop_listar);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1237,7 +1253,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jb_pasar_editarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_pasar_editarMouseClicked
-    DefaultListModel listaModelo = (DefaultListModel)jL_planetas_disp.getModel();
+        DefaultListModel listaModelo = (DefaultListModel)jL_planetas_disp.getModel();
        Planeta mover = (Planeta) listaModelo.getElementAt(jL_planetas_disp.getSelectedIndex());
        
        
@@ -1245,6 +1261,99 @@ public class Principal extends javax.swing.JFrame {
        lista.addElement(mover);
        jL_planetas_disp1.setModel(lista);
     }//GEN-LAST:event_jb_pasar_editarMouseClicked
+
+    private void pop_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pop_editarActionPerformed
+        try{
+            DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode)jt_arbol.getLastSelectedPathComponent();
+            Alien alien = (Alien) selectedNode.getUserObject();
+            
+            
+            String tipo;
+            if (alien instanceof Explorador)
+                tipo = "Explorador";
+            else if (alien instanceof Cazador)
+                tipo = "Cazador";
+            else if (alien instanceof Conquistador)
+                tipo = "Conquistador";
+            else 
+                tipo = "Abduzcan";
+            
+            alien.setNombre(tf_nombre_editar.getText());
+            alien.setEdad((Integer)js_edad_editar.getValue());
+            if (jc_amenaza_editar.isSelected()){
+                alien.setAmenaza(true);
+            }else{
+                alien.setAmenaza(false);
+            }
+            alien.setRaza((Raza)cb_raza_editar.getSelectedItem());
+            
+            
+            if(tipo.equals("Explorador")){
+                Explorador exp = (Explorador) selectedNode.getUserObject();
+                exp.setFavorito((Planeta)cb_planetafav_editar.getSelectedItem());
+                
+                DefaultListModel listaModelo = (DefaultListModel)jL_planetas_disp1.getModel();
+                int length = listaModelo.getSize();
+                exp.getPlanetas().clear();
+                
+                if (!(length < 0)){
+                    for (int i = 0; i < length; i++){
+                        exp.getPlanetas().add((Planeta)listaModelo.getElementAt(i));
+                    }
+                }
+                listaModelo.removeAllElements();
+                jL_planetas_disp1.setModel(listaModelo);
+                
+            }else if (tipo.equals("cazador")){
+                Cazador caz = (Cazador) selectedNode.getUserObject();
+                caz.setHumanos((Integer)js_humanos_editar.getValue());
+            }else if (tipo.equals("Conquistador")){
+                Conquistador con = (Conquistador) selectedNode.getUserObject();
+                
+                DefaultListModel listaModelo = (DefaultListModel)jL_planetas_disp1.getModel();
+                int length = listaModelo.getSize();
+                con.getConquistados().clear();
+                
+                if (!(length < 0)){
+                    for (int i = 0; i < length; i++){
+                        con.getConquistados().add((Planeta)listaModelo.getElementAt(i));
+                    }
+                }
+                listaModelo.removeAllElements();
+                jL_planetas_disp1.setModel(listaModelo);
+                
+            }else{
+                Abduzcan ab = (Abduzcan)selectedNode.getUserObject();
+                ab.setAnimales((Integer)js_animales_editar.getValue());
+            }
+            
+            tf_nombre_editar.setText("");
+            js_edad_editar.setValue(0);
+            jc_amenaza_editar.setSelected(false);
+            js_animales_editar.setValue(0);
+            js_humanos_editar.setValue(0);
+            
+        }catch (Exception ex){
+        }
+    }//GEN-LAST:event_pop_editarActionPerformed
+
+    private void pop_listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pop_listarActionPerformed
+        try{
+            DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode)jt_arbol.getLastSelectedPathComponent();
+            Alien alien = (Alien)selectedNode.getUserObject();
+            System.out.println(alien.toString());
+        }catch(Exception ex){
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_pop_listarActionPerformed
+
+    private void pop_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pop_eliminarActionPerformed
+        DefaultTreeModel m
+                    = (DefaultTreeModel) jt_arbol.getModel();
+        DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode)jt_arbol.getLastSelectedPathComponent();
+        selectedNode.removeFromParent();
+        m.reload();
+    }//GEN-LAST:event_pop_eliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1392,3 +1501,4 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_nombre_r;
     // End of variables declaration//GEN-END:variables
 }
+

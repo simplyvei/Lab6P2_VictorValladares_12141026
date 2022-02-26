@@ -30,6 +30,7 @@ public class Explorador extends Alien{
     public void setFavorito(Planeta favorito) {
         this.favorito = favorito;
     }
+    
 
     @Override
     public String toString() {

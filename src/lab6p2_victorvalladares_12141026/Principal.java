@@ -1341,7 +1341,57 @@ public class Principal extends javax.swing.JFrame {
         try{
             DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode)jt_arbol.getLastSelectedPathComponent();
             Alien alien = (Alien)selectedNode.getUserObject();
-            System.out.println(alien.toString());
+            
+            String tipo;
+            if (alien instanceof Explorador)
+                tipo = "Explorador";
+            else if (alien instanceof Cazador)
+                tipo = "Cazador";
+            else if (alien instanceof Conquistador)
+                tipo = "Conquistador";
+            else 
+                tipo = "Abduzcan";
+            
+            if (tipo.equals("Explorador")){
+                Explorador exp = (Explorador) selectedNode.getUserObject();
+                System.out.println(exp.getNombre());
+                System.out.println(exp.getEdad());
+                System.out.println(exp.getRaza());
+                System.out.println(exp.getFavorito());
+                System.out.println(exp.getPlanetas());
+                if (exp.isAmenaza() == true){
+                    System.out.println("Es una amenaza");
+                }
+            }else if (tipo.equals("Cazador")){
+                Cazador caz = (Cazador) selectedNode.getUserObject();
+                System.out.println(caz.getNombre());
+                System.out.println(caz.getEdad());
+                System.out.println(caz.getRaza());
+                System.out.println(caz.getHumanos());
+                if (caz.isAmenaza() == true){
+                    System.out.println("Es una amenaza");
+                }
+            }else if (tipo.equals("Conquistador")){
+                Conquistador con = (Conquistador) selectedNode.getUserObject();
+                System.out.println(con.getNombre());
+                System.out.println(con.getEdad());
+                System.out.println(con.getRaza());
+                System.out.println(con.getConquistados());
+                if (con.isAmenaza() == true){
+                    System.out.println("Es una amenaza");
+                }
+            }else{
+                Abduzcan ab = (Abduzcan) selectedNode.getUserObject();
+                System.out.println(ab.getNombre());
+                System.out.println(ab.getEdad());
+                System.out.println(ab.getRaza());
+                System.out.println(ab.getAnimales());
+                if (ab.isAmenaza() == true){
+                    System.out.println("Es una amenaza");
+                }
+            }
+            
+
         }catch(Exception ex){
             System.out.println(ex);
         }
